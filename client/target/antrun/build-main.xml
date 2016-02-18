@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <delete includes="*.gradle,*.xml,*.properties" dir="C:\Projects\workspaces\holm\opensky-network-client-project\client/target/generated-sources/swagger"/>
-  <move file="C:\Projects\workspaces\holm\opensky-network-client-project\client/target/generated-sources/swagger/src/main/java" tofile="C:\Projects\workspaces\holm\opensky-network-client-project\client/target/generated-sources/swagger"/>
-  <delete dir="C:\Projects\workspaces\holm\opensky-network-client-project\client/target/generated-sources/swagger/src"/>
-</target>
-</project>

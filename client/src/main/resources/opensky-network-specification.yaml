@@ -1,0 +1,111 @@
+#    OpenAPI Specification for LH Public API
+#    Copyright (C) 2016  Alexey Valikov
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+swagger: '2.0'
+info:
+  version: "1"
+  title: OpenSky Network API
+  description: OpenSky Network API
+schemes:
+  - https
+host: opensky-network.org
+basePath: /api
+consumes:
+  - application/x-www-form-urlencoded
+  - application/json
+paths:
+
+  /states/time:
+    get:
+      description: Information about the currently tracked flights.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: time
+          description: Target timestamp
+          in: query
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Information about the currently tracked flights.
+          schema: 
+            $ref: '#/definitions/States'      
+definitions:
+  States:
+    type: object
+    required:
+      - time
+      - earliest
+      - states
+    properties:
+      time:
+        type: integer
+        format: int64
+      earliest:
+        type: integer
+        format: int64
+      states:
+        type: array
+        items:
+          $ref: '#/definitions/State'
+  State:
+    type: array
+    items:
+      - # icao24 0
+        type: string
+      - # callsign 1
+        type: string
+      - # originCountry 2
+        type: string
+      - # lastPositionUpdate 3
+        type: integer
+        format: int64
+      - # lastVelocityUpdate 4
+        type: integer
+        format: int64
+      - # latitude 5
+        type: number
+        format: double
+      - # longitude 6
+        type: number
+        format: double
+      - # altitude 7
+        type: number
+        format: double
+      - # isOnGround 8
+        type: boolean
+      - # velocity 9
+        type: number
+        format: double
+      - # heading 10
+        type: number
+        format: double
+      - # verticalRate 11
+        type: number
+        format: double
+      - # sensors 12
+        $ref: '#/definitions/Sensors'
+        format: double
+  Sensors:
+    type: array
+    items:
+      type: integer
+      format: int64

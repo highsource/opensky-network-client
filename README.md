@@ -28,9 +28,9 @@ final List<State> statesForTimestamp = apiClient.states(System.currentTimeMillis
 
 ## Troubleshooting
 
-You may be getting `SSLHandshakeException`s. The reason for this is that OpenSky Network uses a SSL
-certificate from [Let's Encrypt](https://letsencrypt.org/) which is a relatively new ceritificate authority.
-This is why the its CA certificate may be missing in your Java installation.
+You may be getting `SSLHandshakeException` when trying to get flights state. The reason for this is that OpenSky Network uses a SSL
+certificate from [Let's Encrypt](https://letsencrypt.org/) which is a relatively new ceritificate authority, its CA certificate may be missing in your Java installation.
+This is why Java can't check the validity of the HTTP connection.
 
 The solution is to add the appropriate certificate to the `${JAVA_HOME}/jre/lib/security/cacerts` keystore, yet to be documented.
 

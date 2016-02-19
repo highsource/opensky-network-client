@@ -40,7 +40,7 @@ paths:
           name: time
           description: Target timestamp
           in: query
-          required: true
+          required: false
           type: integer
           format: int64
       responses:
@@ -48,6 +48,7 @@ paths:
           description: Information about the currently tracked flights.
           schema: 
             $ref: '#/definitions/States'      
+
 definitions:
   States:
     type: object
@@ -69,43 +70,40 @@ definitions:
   State:
     type: array
     items:
-      - # icao24 0
+      -
         type: string
-      - # callsign 1
+      -
         type: string
-      - # originCountry 2
+      -
         type: string
-      - # lastPositionUpdate 3
+      -
         type: integer
         format: int64
-      - # lastVelocityUpdate 4
+      -
         type: integer
         format: int64
-      - # latitude 5
+      -
         type: number
         format: double
-      - # longitude 6
+      -
         type: number
         format: double
-      - # altitude 7
+      -
         type: number
         format: double
-      - # isOnGround 8
+      -
         type: boolean
-      - # velocity 9
+      -
         type: number
         format: double
-      - # heading 10
+      -
         type: number
         format: double
-      - # verticalRate 11
+      -
         type: number
         format: double
-      - # sensors 12
-        $ref: '#/definitions/Sensors'
-        format: double
-  Sensors:
-    type: array
-    items:
-      type: integer
-      format: int64
+      -
+        type: array
+        items:
+          type: integer
+          format: int64

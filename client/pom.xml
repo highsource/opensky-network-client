@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>opensky-network-client</artifactId>
 	<packaging>jar</packaging>
-	<name>Java Client for the LH Public API</name>
+	<name>Java Client for the OpenSky Network API</name>
 	<parent>
 		<groupId>org.hisrc.opensky-network</groupId>
 		<artifactId>opensky-network-client-project</artifactId>
@@ -116,6 +116,7 @@
 						<configuration>
 							<target>
 								<delete dir="${basedir}/target/generated-sources/swagger" includes="*.gradle,*.xml,*.properties"/>
+								<delete dir="${basedir}/target/generated-sources/swagger/src/main/java/org/hisrc/openskynetwork/client/model"/>
 								<move file="${basedir}/target/generated-sources/swagger/src/main/java" tofile="${basedir}/target/generated-sources/swagger"/>
 								<delete dir="${basedir}/target/generated-sources/swagger/src"/>
 							</target>

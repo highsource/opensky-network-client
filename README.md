@@ -1,10 +1,6 @@
-# LH Public API Java Client
+# OpenSky Network Java Client
 
-This projects provides a Java Client for [LH Public API](https://developer.lufthansa.com/docs).
-
-This client is based of the [Swagger](http://swagger.io/specification/)/[OpenAPI](https://github.com/OAI/OpenAPI-Specification) specifications for the LH Public API from the [lhapi-specification](https://github.com/highsource/lhapi-specification) project.
-
-* [lhapi-specification](https://github.com/highsource/lhapi-specification/blob/master/lhapi-specification.yaml)
+This projects provides a Java Client for [OpenSky Network API](https://www.opensky-network.org).
 
 ## Usage
 
@@ -16,49 +12,27 @@ Add the following dependency to your project:
 
 ```xml
 <dependency>
-	<groupId>org.hisrc.lhapi</groupId>
-	<artifactId>lhapi-client</artifactId>
+	<groupId>org.hisrc.opensky-network</groupId>
+	<artifactId>opensky-network-client</artifactId>
 	<version>...</version>
 </dependency>
 ```
 
 ### Using the client in your Java code
 
-### Creating the client
-
 ```
-LhApiClient client = new AuthenticatingLhApiClient(clientId, clientSecret);
-```
-
-### Getting the flight status
-
-Flight status of `LO379` (today):
-
-```
-FlightStatusResponse departuresStatus = client.flightStatus("LO379", LocalDate.now());
+OpenSkyNetworkApiClient apiClient = new DefaultOpenSkyNetworkApiClient();
+final List<State> currentStates = apiClient.states();
+final List<State> statesForTimestamp = apiClient.states(System.currentTimeMillis() / 1000);
 ```
 
-### Getting departures
+## Troubleshooting
 
-Departures from DME +/- one hour from now:
+You may be getting `SSLHandshakeException`s. The reason for this is that OpenSky Network uses a SSL
+certificate from [Let's Encrypt](https://letsencrypt.org/) which is a relatively new ceritificate authority.
+This is why the its CA certificate may be missing in your Java installation.
 
-```
-FlightsStatusResponse departuresStatus = client.departuresStatus(
-	"DME",
-	LocalDateTime.now().minusHours(1),
-	LocalDateTime.now().plusHours(1));
-```
-
-### Getting arrivals
-
-Arrivals to FRA +/- one hour from now:
-
-```
-FlightsStatusResponse arrivalsStatus = client.arrivalsStatus(
-	"FRA",
-	LocalDateTime.now().minusHours(1),
-	LocalDateTime.now().plusHours(1));
-```
+The solution is to add the appropriate certificate to the `${JAVA_HOME}/jre/lib/security/cacerts` keystore, yet to be documented.
 
 ## License
 

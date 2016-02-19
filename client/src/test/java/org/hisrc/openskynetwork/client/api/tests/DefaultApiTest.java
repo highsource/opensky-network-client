@@ -2,8 +2,8 @@ package org.hisrc.openskynetwork.client.api.tests;
 
 import org.hisrc.openskynetwork.client.api.DefaultApi;
 import org.hisrc.openskynetwork.client.invoker.ApiException;
-import org.hisrc.openskynetwork.client.model.SSLUtilities;
 import org.hisrc.openskynetwork.client.model.States;
+import org.hisrc.openskynetwork.util.SSLUtilities;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +14,8 @@ public class DefaultApiTest {
 
 	@Before
 	public void t() {
-		SSLUtilities.trustAllHostnames();
-		SSLUtilities.trustAllHttpsCertificates();
+//		SSLUtilities.trustAllHostnames();
+//		SSLUtilities.trustAllHttpsCertificates();
 	}
 
 	@Test
